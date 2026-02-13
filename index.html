@@ -2,50 +2,1283 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>For You ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Will You Be My Valentine? 💖</title>
 
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #FFE5EC;
+            color: #8B0053;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        /* Tulip Pattern Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(255, 192, 203, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 85% 70%, rgba(255, 182, 193, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 35% 80%, rgba(255, 105, 180, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 65% 15%, rgba(255, 192, 203, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 182, 193, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Tulip decorations */
+        .tulip-decoration {
+            position: fixed;
+            font-size: 4em;
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 0;
+            animation: gentleSway 6s ease-in-out infinite;
+        }
+
+        @keyframes gentleSway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .tulip-decoration:nth-child(1) { top: 8%; left: 5%; animation-delay: 0s; }
+        .tulip-decoration:nth-child(2) { top: 20%; right: 8%; animation-delay: 1s; }
+        .tulip-decoration:nth-child(3) { top: 45%; left: 3%; animation-delay: 2s; }
+        .tulip-decoration:nth-child(4) { top: 65%; right: 5%; animation-delay: 3s; }
+        .tulip-decoration:nth-child(5) { bottom: 15%; left: 10%; animation-delay: 4s; }
+        .tulip-decoration:nth-child(6) { bottom: 25%; right: 12%; animation-delay: 5s; }
+
+        /* Valentine's Proposal Section */
+        .valentine-proposal {
             height: 100vh;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            background: linear-gradient(135deg, 
+                #FF69B4 0%, 
+                #FFB6C1 25%, 
+                #FFC0CB 50%, 
+                #FFB6C1 75%, 
+                #FF69B4 100%);
+            background-size: 400% 400%;
+            animation: romanticGradient 20s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial, sans-serif;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        @keyframes romanticGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Hearts and Tulips */
+        .heart-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2.5em;
+            animation: floatUp 15s infinite ease-in;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            90% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 6s; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 8s; }
+        .heart:nth-child(6) { left: 60%; animation-delay: 10s; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 12s; }
+        .heart:nth-child(8) { left: 80%; animation-delay: 14s; }
+        .heart:nth-child(9) { left: 90%; animation-delay: 16s; }
+
+        /* Glowing Pink Orbs */
+        .pink-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.35;
+            animation: pulseGlow 10s infinite ease-in-out;
+        }
+
+        .pink-orb1 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #FF69B4, #FFB6C1);
+            top: -180px;
+            left: -180px;
+        }
+
+        .pink-orb2 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, #FFB6C1, #FFC0CB);
+            bottom: -220px;
+            right: -220px;
+            animation-delay: 5s;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.35; }
+            50% { transform: scale(1.15); opacity: 0.5; }
+        }
+
+        .proposal-content {
+            z-index: 10;
+            animation: fadeInScale 2s ease;
+            max-width: 90%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .proposal-content h1 {
+            font-size: 4.5em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #fff, #FFE5EC, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            text-shadow: 0 0 60px rgba(255, 255, 255, 0.6);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.4); }
+        }
+
+        .proposal-content p {
+            font-size: 1.7em;
+            opacity: 1;
+            line-height: 2;
+            margin-bottom: 40px;
+            font-style: italic;
             color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .heart-pulse {
+            font-size: 6em;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin: 30px 0;
+            filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.5));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.15); }
+            20%, 40% { transform: scale(1); }
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            font-size: 3em;
+            opacity: 0.85;
+            filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.4));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-25px); }
+        }
+
+        /* Mailbox Styles */
+        .mailbox-container {
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeInScale 2s ease;
+        }
+
+        .mailbox-instruction {
+            margin-bottom: 40px;
             text-align: center;
         }
 
-        .box {
-            background: rgba(255,255,255,0.2);
-            padding: 30px;
-            border-radius: 20px;
+        .mailbox-instruction p {
+            font-size: 2em;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
         }
 
-        h1 {
-            font-size: 2.5em;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
         }
 
-        p {
-            font-size: 1.2em;
+        /* Realistic Mailbox */
+        .mailbox {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .mailbox:hover {
+            transform: scale(1.05);
+        }
+
+        /* Mailbox Post */
+        .mailbox-post {
+            width: 20px;
+            height: 200px;
+            background: linear-gradient(to right, #8B4513, #A0522D, #8B4513);
+            border-radius: 10px;
+            margin: 0 auto;
+            box-shadow: 
+                inset -3px 0 5px rgba(0, 0, 0, 0.3),
+                5px 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Mailbox Body */
+        .mailbox-body {
+            position: relative;
+            width: 280px;
+            height: 180px;
+            background: linear-gradient(to bottom, #E8E8E8, #C0C0C0);
+            border-radius: 140px 140px 20px 20px;
+            margin: 0 auto;
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.5),
+                inset 0 -5px 20px rgba(0, 0, 0, 0.2);
+            border: 3px solid #A0A0A0;
+        }
+
+        /* Mailbox Flag */
+        .mailbox-flag {
+            position: absolute;
+            top: 40px;
+            right: -15px;
+            width: 50px;
+            height: 30px;
+            background: linear-gradient(to right, #DC143C, #FF1744);
+            border-radius: 5px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+            transform-origin: left center;
+            animation: flagWave 3s ease-in-out infinite;
+        }
+
+        .mailbox-flag::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #FFD700;
+            border-radius: 50%;
+            margin-left: 5px;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+        }
+
+        @keyframes flagWave {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-10deg); }
+        }
+
+        /* Mailbox Door */
+        .mailbox-door {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 220px;
+            height: 140px;
+            background: linear-gradient(to bottom, #F5F5F5, #D3D3D3);
+            border-radius: 110px 110px 10px 10px;
+            border: 3px solid #909090;
+            box-shadow: 
+                inset 0 3px 10px rgba(255, 255, 255, 0.5),
+                inset 0 -3px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.6s ease;
+            transform-origin: top center;
+        }
+
+        .mailbox-door.open {
+            transform: translateX(-50%) rotateX(90deg);
+        }
+
+        /* Door Handle */
+        .mailbox-door-handle {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 15px;
+            background: linear-gradient(to bottom, #FFD700, #FFA500);
+            border-radius: 8px;
+            box-shadow: 
+                0 3px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 3px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Letter Envelope Inside */
+        .letter-envelope {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            width: 180px;
+            height: 120px;
+            background: linear-gradient(to bottom, #FFF5F5, #FFE5E5);
+            border: 2px solid #FFB6C1;
+            border-radius: 5px;
+            opacity: 0;
+            transition: all 0.8s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .letter-envelope.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-80px);
+        }
+
+        /* Envelope Flap */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 90px solid transparent;
+            border-right: 90px solid transparent;
+            border-top: 60px solid #FFB6C1;
+            opacity: 0.9;
+        }
+
+        .envelope-heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        /* Gallery Sections */
+        .gallery-section {
+            background: transparent;
+            padding: 80px 20px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Pyramid Photo Grid - 2 top, 3 bottom */
+        .photo-row {
+            max-width: 1400px;
+            margin: 0 auto 35px;
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            padding: 0 20px;
+        }
+
+        /* 2 photos row (top) */
+        .photo-row.row-2 .photo-card {
+            width: 420px;
+        }
+
+        /* 3 photos row (bottom) */
+        .photo-row.row-3 .photo-card {
+            width: 350px;
+        }
+
+        .photo-card {
+            background: rgba(255, 182, 193, 0.35);
+            backdrop-filter: blur(25px);
+            border: 4px solid rgba(255, 105, 180, 0.6);
+            border-radius: 30px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(50px);
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.45);
+            cursor: pointer;
+        }
+
+        .photo-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .photo-card:hover {
+            transform: translateY(-18px) scale(1.05);
+            box-shadow: 0 35px 90px rgba(255, 105, 180, 0.65);
+            border-color: rgba(255, 105, 180, 0.9);
+        }
+
+        .photo-wrapper {
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #FF69B4, #FFB6C1);
+        }
+
+        .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .photo-card:hover .photo-wrapper img {
+            transform: scale(1.2);
+        }
+
+        /* Click indicator */
+        .click-indicator {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 105, 180, 0.95);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 700;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 6px 25px rgba(255, 105, 180, 0.7);
+        }
+
+        .photo-card:hover .click-indicator {
+            opacity: 1;
+        }
+
+        /* Message Section - appears after every 5 photos */
+        .message-section {
+            max-width: 950px;
+            margin: 90px auto;
+            padding: 70px 60px;
+            background: rgba(255, 182, 193, 0.4);
+            backdrop-filter: blur(30px);
+            border: 4px solid rgba(255, 105, 180, 0.7);
+            border-radius: 45px;
+            text-align: center;
+            box-shadow: 0 25px 70px rgba(255, 105, 180, 0.5);
+            animation: fadeIn 1.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-section h2 {
+            font-size: 3.2em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FF1493, #FF69B4, #FFB6C1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .message-section p {
+            font-size: 1.6em;
+            line-height: 2.1;
+            color: #8B0053;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Divider */
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #FF69B4, transparent);
+            margin: 70px auto;
+            width: 70%;
+            animation: glow 2.5s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 15px #FF69B4; }
+            50% { box-shadow: 0 0 35px #FF69B4, 0 0 70px #FF69B4; }
+        }
+
+        /* Lightbox for viewing images closely */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 182, 193, 0.97);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.4s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 25px;
+            box-shadow: 0 0 120px rgba(255, 105, 180, 0.9);
+            border: 5px solid #FFB6C1;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -70px;
+            right: 0;
+            background: #FF69B4;
+            color: white;
+            border: none;
+            font-size: 3em;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.7);
+        }
+
+        .lightbox-close:hover {
+            background: #FF1493;
+            transform: scale(1.2) rotate(90deg);
+        }
+
+        /* Navigation arrows */
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #FF69B4;
+            color: white;
+            border: none;
+            font-size: 3em;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.7);
+        }
+
+        .lightbox-nav:hover {
+            background: #FF1493;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .lightbox-prev {
+            left: 35px;
+        }
+
+        .lightbox-next {
+            right: 35px;
+        }
+
+        /* Final Love Letter Section */
+        .love-letter {
+            background: linear-gradient(135deg, #FF69B4, #FFB6C1);
+            padding: 130px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 90px;
+        }
+
+        .love-letter::before {
+            content: '💖';
+            position: absolute;
+            font-size: 35em;
+            opacity: 0.12;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .love-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(35px);
+            border: 5px solid rgba(255, 182, 193, 0.9);
+            border-radius: 55px;
+            padding: 90px 70px;
+            box-shadow: 0 35px 100px rgba(255, 105, 180, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .love-card h2 {
+            font-size: 3.5em;
+            margin-bottom: 45px;
+            background: linear-gradient(135deg, #FF1493, #FF69B4, #FFB6C1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s infinite;
+        }
+
+        .love-card p {
+            font-size: 1.6em;
+            line-height: 2.3;
+            color: #8B0053;
+            font-style: italic;
+            margin-bottom: 28px;
+            font-weight: 600;
+        }
+
+        .signature {
+            font-size: 2.2em;
+            margin-top: 55px;
+            font-weight: 700;
+            color: #FF1493;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 1024px) {
+            .photo-row.row-2 .photo-card {
+                width: 380px;
+            }
+
+            .photo-row.row-3 .photo-card {
+                width: 310px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .proposal-content h1 {
+                font-size: 2.8em;
+            }
+            .proposal-content p {
+                font-size: 1.3em;
+                padding: 0 20px;
+            }
+            .heart-pulse {
+                font-size: 4em;
+            }
+
+            .photo-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .photo-row.row-2 .photo-card,
+            .photo-row.row-3 .photo-card {
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .photo-wrapper {
+                height: 380px;
+            }
+
+            .message-section {
+                padding: 50px 35px;
+            }
+
+            .message-section h2 {
+                font-size: 2.5em;
+            }
+
+            .message-section p {
+                font-size: 1.3em;
+            }
+
+            .love-card {
+                padding: 65px 45px;
+            }
+
+            .love-card h2 {
+                font-size: 2.7em;
+            }
+
+            .love-card p {
+                font-size: 1.3em;
+            }
+
+            .lightbox-close {
+                top: 15px;
+                right: 15px;
+                width: 55px;
+                height: 55px;
+                font-size: 2.2em;
+            }
+
+            .lightbox-nav {
+                width: 60px;
+                height: 60px;
+                font-size: 2.2em;
+            }
+
+            .lightbox-prev {
+                left: 15px;
+            }
+
+            .lightbox-next {
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .proposal-content h1 {
+                font-size: 2.2em;
+            }
+            .proposal-content p {
+                font-size: 1.1em;
+            }
+            .photo-wrapper {
+                height: 320px;
+            }
+            .message-section h2 {
+                font-size: 2em;
+            }
+            .message-section p {
+                font-size: 1.1em;
+            }
         }
     </style>
 </head>
 
 <body>
+    <!-- Tulip decorations -->
+    <div class="tulip-decoration">🌷</div>
+    <div class="tulip-decoration">🌷</div>
+    <div class="tulip-decoration">🌷</div>
+    <div class="tulip-decoration">🌷</div>
+    <div class="tulip-decoration">🌷</div>
+    <div class="tulip-decoration">🌷</div>
 
-    <div class="box">
-        <h1>Happy Valentine’s Day 💖</h1>
+    <!-- Valentine's Proposal Section with Mailbox -->
+    <section class="valentine-proposal">
+        <div class="heart-container">
+            <div class="heart">💖</div>
+            <div class="heart">🌷</div>
+            <div class="heart">💕</div>
+            <div class="heart">🌷</div>
+            <div class="heart">💗</div>
+            <div class="heart">🌷</div>
+            <div class="heart">💝</div>
+            <div class="heart">🌷</div>
+            <div class="heart">💖</div>
+        </div>
+        
+        <div class="pink-orb pink-orb1"></div>
+        <div class="pink-orb pink-orb2"></div>
+        
+        <!-- Mailbox Container -->
+        <div class="mailbox-container" id="mailboxContainer">
+            <div class="mailbox-instruction">
+                <p>✉️ You've got mail! Tap to open ✉️</p>
+            </div>
+            
+            <!-- Realistic Mailbox -->
+            <div class="mailbox" id="mailbox">
+                <!-- Mailbox Post -->
+                <div class="mailbox-post"></div>
+                
+                <!-- Mailbox Body -->
+                <div class="mailbox-body">
+                    <!-- Mailbox Flag -->
+                    <div class="mailbox-flag"></div>
+                    
+                    <!-- Mailbox Door -->
+                    <div class="mailbox-door" id="mailboxDoor">
+                        <div class="mailbox-door-handle"></div>
+                    </div>
+                    
+                    <!-- Letter Inside (visible when opened) -->
+                    <div class="letter-envelope" id="letterEnvelope">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-heart">💌</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message Content (hidden initially) -->
+        <div class="proposal-content" id="proposalContent" style="display: none;">
+            <h1>Will You Be My Valentine?</h1>
+            <div class="heart-pulse">💘</div>
+            <p>
+                Every moment with you feels like a beautiful dream.<br>
+                You make my heart skip a beat every single day.<br>
+                Say yes and make this Valentine's Day unforgettable...
+            </p>
+        </div>
+        
+        <div class="scroll-hint" id="scrollHint" style="display: none;">↓</div>
+    </section>
 
-        <p>
-            Hi my love 💕<br><br>
-            I made this little website just for you.<br>
-            Thank you for being my happiness every day 🌹
-        </p>
+    <!-- Hidden Audio Element -->
+    <audio id="mailboxSound" preload="auto">
+        <source src="music.mp3" type="audio/mpeg">
+        <source src="music.ogg" type="audio/ogg">
+    </audio>
 
-        <p>— Yours forever 😘</p>
+    <!-- Gallery Section - First 5 Photos (2-3 pyramid) -->
+    <section class="gallery-section">
+        <!-- Row 1: 2 photos on top -->
+        <div class="photo-row row-2">
+            <div class="photo-card" data-index="0">
+                <div class="photo-wrapper">
+                    <img src="PIC1.jpg" alt="Memory 1">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-index="1">
+                <div class="photo-wrapper">
+                    <img src="PIC1-1.jpg" alt="Memory 2">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: 3 photos on bottom -->
+        <div class="photo-row row-3">
+            <div class="photo-card" data-index="2">
+                <div class="photo-wrapper">
+                    <img src="PIC1-2.jpg" alt="Memory 3">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-index="3">
+                <div class="photo-wrapper">
+                    <img src="PIC1-3.jpg" alt="Memory 4">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-index="4">
+                <div class="photo-wrapper">
+                    <img src="PIC1-4.jpg" alt="Memory 5">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message after first 5 photos -->
+        <div class="message-section">
+            <h2>Where It All Began 💫</h2>
+            <p>The moment our eyes met, I knew you were someone special. That smile still melts my heart. These are the memories of how we started our beautiful journey together.</p>
+        </div>
+
+        <div class="section-divider"></div>
+    </section>
+
+    <!-- Gallery Section - Photos 6-10 (2-3 pyramid) -->
+    <section class="gallery-section">
+        <!-- Row 1: 2 photos on top -->
+        <div class="photo-row row-2">
+            <div class="photo-card" data-index="5">
+                <div class="photo-wrapper">
+                    <img src="PIC1-5.jpg" alt="Memory 6">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-index="6">
+                <div class="photo-wrapper">
+                    <img src="PIC2.jpg" alt="Memory 7">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: 3 photos on bottom -->
+        <div class="photo-row row-3">
+            <div class="photo-card" data-index="7">
+                <div class="photo-wrapper">
+                    <img src="PIC2-1.jpg" alt="Memory 8">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-index="8">
+                <div class="photo-wrapper">
+                    <img src="PIC2-2.jpg" alt="Memory 9">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-index="9">
+                <div class="photo-wrapper">
+                    <img src="PIC2-3.jpg" alt="Memory 10">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message after photos 6-10 -->
+        <div class="message-section">
+            <h2>Adventures Together 🌍</h2>
+            <p>Exploring the world is better with you by my side. Every destination becomes paradise when I'm with you. These moments remind me why every journey matters.</p>
+        </div>
+
+        <div class="section-divider"></div>
+    </section>
+
+    <!-- Gallery Section - Photos 11-15 (2-3 pyramid) -->
+    <section class="gallery-section">
+        <!-- Row 1: 2 photos on top -->
+        <div class="photo-row row-2">
+            <div class="photo-card" data-index="10">
+                <div class="photo-wrapper">
+                    <img src="PIC2-4.jpg" alt="Memory 11">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-index="11">
+                <div class="photo-wrapper">
+                    <img src="PIC2-5.jpg" alt="Memory 12">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: 3 photos on bottom -->
+        <div class="photo-row row-3">
+            <div class="photo-card" data-index="12">
+                <div class="photo-wrapper">
+                    <img src="PIC3.jpg" alt="Memory 13">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-index="13">
+                <div class="photo-wrapper">
+                    <img src="PIC4.jpg" alt="Memory 14">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-index="14">
+                <div class="photo-wrapper">
+                    <img src="PIC5.jpg" alt="Memory 15">
+                    <div class="click-indicator">👆 Tap to view</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message after photos 11-15 -->
+        <div class="message-section">
+            <h2>Forever & Always 💍</h2>
+            <p>The little things mean everything. Every moment with you is a treasure. Building our future together, one beautiful memory at a time. You're my forever romance.</p>
+        </div>
+    </section>
+
+    <!-- Final Love Letter Section -->
+    <section class="love-letter">
+        <div class="love-card">
+            <h2>To the Love of My Life 💌</h2>
+            <p>
+                From the moment you walked into my life, everything changed.<br>
+                You've shown me what true love really means.
+            </p>
+            <p>
+                Every sunrise is more beautiful because I get to share it with you.<br>
+                Every challenge is easier because I face it with you by my side.
+            </p>
+            <p>
+                You are my best friend, my partner, my soulmate.<br>
+                You are the answer to every prayer I never knew to speak.
+            </p>
+            <p>
+                Thank you for choosing me, for loving me, for believing in us.<br>
+                Here's to this Valentine's Day and every day after—
+            </p>
+            <p>
+                Because loving you is the best decision I've ever made,<br>
+                and being loved by you is the greatest gift I've ever received.
+            </p>
+            <p class="signature">Forever Yours, Always 💖</p>
+        </div>
+    </section>
+
+    <!-- Lightbox for viewing images -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">×</button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev">‹</button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next">›</button>
+        <div class="lightbox-content">
+            <img class="lightbox-image" id="lightbox-image" src="" alt="">
+        </div>
     </div>
+
+    <script>
+        // Mailbox interaction
+        const mailbox = document.getElementById('mailbox');
+        const mailboxDoor = document.getElementById('mailboxDoor');
+        const letterEnvelope = document.getElementById('letterEnvelope');
+        const mailboxContainer = document.getElementById('mailboxContainer');
+        const proposalContent = document.getElementById('proposalContent');
+        const scrollHint = document.getElementById('scrollHint');
+        const mailboxSound = document.getElementById('mailboxSound');
+
+        let mailboxOpened = false;
+
+        mailbox.addEventListener('click', function() {
+            if (mailboxOpened) return;
+            
+            mailboxOpened = true;
+            
+            // Play sound
+            mailboxSound.play().catch(function(error) {
+                console.log('Audio play failed:', error);
+            });
+            
+            // Open mailbox door
+            mailboxDoor.classList.add('open');
+            
+            // Show letter coming out
+            setTimeout(function() {
+                letterEnvelope.classList.add('show');
+            }, 300);
+            
+            // Hide mailbox and show message
+            setTimeout(function() {
+                mailboxContainer.style.opacity = '0';
+                mailboxContainer.style.transform = 'scale(0.8)';
+                mailboxContainer.style.transition = 'all 0.6s ease';
+                
+                setTimeout(function() {
+                    mailboxContainer.style.display = 'none';
+                    proposalContent.style.display = 'block';
+                    scrollHint.style.display = 'block';
+                    
+                    // Fade in message
+                    setTimeout(function() {
+                        proposalContent.style.opacity = '1';
+                        scrollHint.style.opacity = '0.85';
+                    }, 100);
+                }, 600);
+            }, 2000);
+        });
+
+        // Photo data array
+        const photoData = [];
+        
+        // Collect all photo cards
+        document.querySelectorAll('.photo-card').forEach((card, index) => {
+            const img = card.querySelector('.photo-wrapper img');
+            
+            photoData.push({
+                src: img.src
+            });
+            
+            // Add click event to open lightbox
+            card.addEventListener('click', () => openLightbox(index));
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            showImage();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function showImage() {
+            const photo = photoData[currentIndex];
+            lightboxImage.src = photo.src;
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % photoData.length;
+            showImage();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + photoData.length) % photoData.length;
+            showImage();
+        }
+
+        // Event listeners
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', nextImage);
+        lightboxPrev.addEventListener('click', prevImage);
+        
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        // Touch swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lightbox.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        lightbox.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) nextImage();
+            if (touchEndX > touchStartX + 50) prevImage();
+        }
+
+        // Smooth reveal on scroll
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.photo-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Prevent double-tap zoom on mobile
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
 
 </body>
 </html>
